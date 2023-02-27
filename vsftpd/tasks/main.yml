@@ -1,0 +1,17 @@
+---
+- name: Install vsftpd
+  apt:
+    name: vsftpd
+    state: present
+    update_cache: true
+
+- name: copy config
+  copy:
+    src: "{{ role_path }}/files/vsftpd.conf"
+    dest: /etc/vsftpd.conf
+
+- name: start service
+  service:
+    name: vsftpd
+    state: started
+    enabled: true
